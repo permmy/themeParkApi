@@ -10,7 +10,7 @@ plugins {
 group = 'com.rides'
 version = scmVersion.version
 description = 'rides-api'
-sourceCompatibility = '11'
+sourceCompatibility = '1.8'
 
 String imageName = "permmy12/theme-park-rides:$version"
 
