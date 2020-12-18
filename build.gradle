@@ -8,19 +8,22 @@ plugins {
 }
 
 group = 'com.rides'
-project.version = scmVersion.version
+version = scmVersion.version
 description = 'rides-api'
 sourceCompatibility = '11'
 
+String imageName = "permmy12/theme-park-rides:$version"
+
 docker {
-	name "${project.name}:${project.version}"
-	files "plugins.txt", "seedJob.xml"
+	name imageName
+	files "build/libs/${bootJar.archiveFileName.get()}"
+	buildArgs ([JAR_FILE: bootJar.archiveFileName.get()])
 }
 
 dockerRun {
 	name "${project.name}"
-	image "${project.name}:${project.version}"
-	ports '8080:8080'
+	image imageName
+	ports '8000:8000'
 	clean true
 	daemonize false
 }
